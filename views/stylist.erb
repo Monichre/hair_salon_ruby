@@ -3,7 +3,7 @@
 
 <h2><%=@stylist.name()%>'s clients</h2>
 
-<% if @stylist.clients().any? %>
+<% if @stylist.clients.any? %>
   <ul>
     <% @stylist.clients().each do |client| %>
       <li><%=client.name() %></li>
