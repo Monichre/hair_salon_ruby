@@ -3,7 +3,7 @@ class Client
 
   def initialize(attributes)
     @name = attributes.fetch(:name)
-    # @stylist_id = attributes.fetch(:stylist_id)
+    @stylist_id = attributes.fetch(:stylist_id)
   end
 
   define_method(:==) do |another_client|
@@ -16,7 +16,7 @@ class Client
     returned_clients.each do |client|
       name = client.fetch('name')
       stylist_id = client.fetch('stylist_id')
-      clients.push(Client.new({:name => name, :stlyist_id => stylist_id}))
+      clients.push(Client.new({:name => name, :stylist_id => stylist_id}))
     end
     clients
   end
