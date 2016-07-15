@@ -24,9 +24,10 @@ end
 
 get('/stylists') do
   @stylists = Stylist.all()
+  erb(:stylists)
 end
 
-# get('stylists/:id') do
-#   @stylist = Stylist.find()
-#   # write a find method and spec for stylist
-# end
+get('/stylists/:id') do
+  @stylist = Stylist.find(params.fetch('id').to_i)
+  erb(:stylist)
+end

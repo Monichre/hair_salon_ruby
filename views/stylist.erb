@@ -1,0 +1,13 @@
+<h1><%= @stylist.name() %></h1>
+<p>An esteemed member of our staff, his clients are below. Feel free to book an appointment below</p>
+
+<!-- <h2><%=@stylist.name()%>'s clients</h2>
+  <ul>
+    <% @stylist.
+  </ul> -->
+
+<form action="/stylists/<%= @stylist.id() %>/clients" method="post">
+  <label for="new_client_name">Enter your name</label><br>
+  <input id="new_client_name" name="new_client_name" type="text"><br>
+  <button type="submit">Book this client</button>
+</form>
