@@ -7,7 +7,7 @@ class Client
   end
 
   define_method(:==) do |another_client|
-    self.name() == (another_client.name())
+    self.name() == (another_client.name()) && self.stylist_id == another_client.stylist_id
   end
 
   define_singleton_method(:all) do
@@ -15,13 +15,13 @@ class Client
     clients = []
     returned_clients.each do |client|
       name = client.fetch('name')
-      stylist_id = client.fetch('stylist_id')
+      stylist_id = client.fetch('stylist_id').to_i
       clients.push(Client.new({:name => name, :stylist_id => stylist_id}))
     end
     clients
   end
 
   def save
-    DB.exec("INSERT INTO clients (name) VALUES ('#{@name}');")
+    DB.exec("INSERT INTO clients (name, stylist_id) VALUES ('#{@name}', #{stylist_id});")
   end
 end
