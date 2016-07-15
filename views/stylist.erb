@@ -1,10 +1,19 @@
 <h1><%= @stylist.name() %></h1>
 <p>An esteemed member of our staff, his clients are below. Feel free to book an appointment below</p>
 
-<!-- <h2><%=@stylist.name()%>'s clients</h2>
+<h2><%=@stylist.name()%>'s clients</h2>
+
+<% if @stylist.clients().any? %>
   <ul>
-    <% @stylist.
-  </ul> -->
+    <% @stylist.clients().each do |client| %>
+      <li><%=client.name() %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>
+    No new clients at this time. Book an appointment!
+  </p>
+<% end %>
 
 <form action="/stylists/<%= @stylist.id() %>/clients" method="post">
   <label for="new_client_name">Enter your name</label><br>
