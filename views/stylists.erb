@@ -1,14 +1,12 @@
 <% if @stylists.any? %>
   <h2>Browse our current stylists</h2>
-  <p>To book an appointment click on the stylist of your choice</p>
-
-    <ul>
-      <% @stylists.each do |stylist| %>
-      <li><a href="/stylists/<%=stylist.id() %>"><%= stylist.name() %></a></li>
-      <% end %>
-    </ul>
+  <ul>
+    <% @stylists.each do |stylist| %>
+    <li><a href="/stylists/<%=stylist.id() %>"><%= stylist.name() %></a></li>
+    <% end %>
+  </ul>
 <% else %>
 
-<h2>There are no stylists at this time. Please contact our receptionist, thank you</h2>
+  <p>There are no stylists at this time. Please contact our receptionist, thank you</p>
   <li>555-555-5555</li>
 <% end %>
