@@ -15,8 +15,18 @@ describe('index path', {:type => :feature}) do
   end
 end
 
-describe('seeing details for a single list', {:type => :feature}) do
-  it('allows a user to click a list to see the tasks and details for it') do
+describe('stylists', {:type => :feature}) do
+  it('seeing a list for all stylists') do
+    test_stylist = Stylist.new({:name => 'Veronica', :id => nil})
+    test_stylist.save()
+    visit('/stylists')
+    click_link(test_stylist.name())
+    expect(page).to have_content("Veronica")
+  end
+end
+
+describe('stylists/:id', {:type => :feature}) do
+  it('clicking a stylist and seeing their clients') do
     test_stylist = Stylist.new({:name => 'Veronica', :id => nil})
     test_stylist.save()
     test_client = Client.new({:name => "Marve", :stylist_id => test_stylist.id()})
@@ -24,5 +34,6 @@ describe('seeing details for a single list', {:type => :feature}) do
     visit('/stylists')
     click_link(test_stylist.name())
     expect(page).to have_content("Veronica")
+    expect(page).to have_content("Marve")
   end
 end
