@@ -12,6 +12,8 @@ describe('index path', {:type => :feature}) do
     visit('/')
     click_link('Meet our stylists')
     expect(page).to have_content("There are no stylists at this time. Please contact our receptionist, thank you 555-555-5555")
+    click_link('Home')
+    expect(page).to have_content("Today's deals:")
   end
 end
 
