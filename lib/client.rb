@@ -40,7 +40,6 @@ class Client
 
   def update(attributes)
     @name = attributes.fetch(:name)
-    @stylist_id = self.stylist_id
     @id = self.id()
     DB.exec("UPDATE clients SET name = '#{@name}' WHERE id = #{@id};")
   end
