@@ -1,5 +1,5 @@
 class Client
-  attr_reader(:name, :stylist_id)
+  attr_reader(:name, :stylist_id, :id)
 
   def initialize(attributes)
     @name = attributes.fetch(:name)
@@ -22,6 +22,7 @@ class Client
   end
 
   def save
-    DB.exec("INSERT INTO clients (name, stylist_id) VALUES ('#{@name}', #{stylist_id});")
+    result = DB.exec("INSERT INTO clients (name, stylist_id) VALUES ('#{@name}', #{stylist_id}) RETURNING id;")
+    @id = result.first().fetch('id').to_i()
   end
 end

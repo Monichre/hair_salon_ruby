@@ -29,4 +29,12 @@ describe(Client) do
       expect(Client.all()).to(eq([test_client]))
     end
   end
+
+  describe('#id') do
+    it "returns the id" do
+      test_client = Client.new({:name => "Doris", :stylist_id => 1})
+      test_client.save()
+      expect(test_client.id).to(be_an_instance_of(Fixnum))
+    end
+  end
 end

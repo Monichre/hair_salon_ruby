@@ -8,13 +8,13 @@ describe('index path', {:type => :feature}) do
     visit('/')
     expect(page).to have_content("Ruby Salon")
   end
-  it('displays Home page') do
-    visit('/')
-    click_link('Meet our stylists')
-    expect(page).to have_content("There are no stylists at this time. Please contact our receptionist, thank you 555-555-5555")
-    click_link('Home')
-    expect(page).to have_content("Today's deals:")
-  end
+  # it('displays Home page') do
+  #   visit('/')
+  #   click_link('Meet our stylists')
+  #   expect(page).to have_content("There are no stylists at this time. Please contact our receptionist, thank you 555-555-5555")
+  #   click_link('Home')
+  #   expect(page).to have_content("Today's deals:")
+  # end
 end
 
 describe('stylists', {:type => :feature}) do
@@ -23,6 +23,13 @@ describe('stylists', {:type => :feature}) do
     test_stylist.save()
     visit('/stylists')
     click_link(test_stylist.name())
+    expect(page).to have_content("Veronica")
+  end
+  it('seeing a list for all stylists') do
+    test_stylist = Stylist.new({:name => 'Veronica', :id => nil})
+    test_stylist.save()
+    visit('/')
+    click_link('Meet our stylists')
     expect(page).to have_content("Veronica")
   end
 end
