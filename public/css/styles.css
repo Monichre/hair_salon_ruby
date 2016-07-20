@@ -88,3 +88,7 @@ a, a:hover  {
   margin: auto;
   display: block;
 }
+
+.btn {
+  font-family: helvetica neue;
+}

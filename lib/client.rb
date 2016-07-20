@@ -22,7 +22,7 @@ class Client
   end
 
   def save
-    result = DB.exec("INSERT INTO clients (name, stylist_id) VALUES ('#{@name}', #{stylist_id}) RETURNING id;")
+    result = DB.exec("INSERT INTO clients (name, stylist_id) VALUES ('#{@name}', #{@stylist_id}) RETURNING id;")
     @id = result.first().fetch('id').to_i()
   end
 

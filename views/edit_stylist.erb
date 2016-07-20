@@ -1,0 +1,7 @@
+<h2>Edit <%=@stylist.name%></h2>
+<form action="/stylists/<%= @stylist.id() %>/" method="post">
+  <input name="_method" type="hidden" value="patch">
+  <label for="new_stylist_name">Edit stylist's name</label><br>
+  <input id="new_stylist_name" name="new_stylist_name" type="text"><br>
+  <button type="submit">Edit</button>
+</form>

@@ -1,12 +1,13 @@
 <h2><%= @stylist.name() %></h2>
 <p>An esteemed member of our staff, his clients are below. Book an appointment with him!</p>
+<a href="/stylists/<%=@stylist.id %>/edit">Edit this Stylist</a>
 
-<h2><%=@stylist.name()%>'s clients</h2>
+<h3><%=@stylist.name()%>'s clients</h3>
 
 <% if @stylist.clients.any? %>
   <ul>
     <% @stylist.clients().each do |client| %>
-      <li><%=client.name() %></li>
+      <li><a href="/stylists/<%=@stylist.id %>/clients/<%=client.id %>"> <%=client.name() %>, <%=client.id %></a></li>
     <% end %>
   </ul>
 <% else %>
@@ -15,7 +16,7 @@
   </p>
 <% end %>
 
-<form action="/stylists/<%= @stylist.id() %>/clients" method="post">
+<form action="/stylists/<%= @stylist.id() %>/clients/new_client" method="post">
   <label for="new_client_name">Enter your name</label><br>
   <input id="new_client_name" name="new_client_name" type="text"><br>
   <button type="submit">Book this client</button>
