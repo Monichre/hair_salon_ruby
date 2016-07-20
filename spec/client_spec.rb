@@ -37,4 +37,13 @@ describe(Client) do
       expect(test_client.id).to(be_an_instance_of(Fixnum))
     end
   end
+
+  describe("#update") do
+    it("lets you update clients in the database") do
+      client = Client.new({:name => "Franky", :stylist_id => 1, :id => nil})
+      client.save()
+      client.update({:name => "Franky Boy"})
+      expect(client.name()).to(eq("Franky Boy"))
+    end
+  end
 end

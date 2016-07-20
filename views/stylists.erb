@@ -2,7 +2,11 @@
   <h2>Browse our current stylists</h2>
   <ul>
     <% @stylists.each do |stylist| %>
-    <li><a href="/stylists/<%=stylist.id() %>"><%= stylist.name() %></a></li>
+    <li><a href="/stylists/<%=stylist.id() %>"><%= stylist.name() %></a>
+      <form action="/stylists/<%= stylist.id %>/delete" method="post">
+        <button type="submit"><img src="../scissors.png" alt="" /></button>
+      </form>
+    </li>
     <% end %>
   </ul>
 <% else %>

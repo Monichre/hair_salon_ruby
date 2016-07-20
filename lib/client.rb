@@ -25,4 +25,12 @@ class Client
     result = DB.exec("INSERT INTO clients (name, stylist_id) VALUES ('#{@name}', #{stylist_id}) RETURNING id;")
     @id = result.first().fetch('id').to_i()
   end
+
+  def update(attributes)
+    @name = attributes.fetch(:name)
+    @stylist_id = self.stylist_id
+    @id = self.id()
+    DB.exec("UPDATE clients SET name = '#{@name}' WHERE id = #{@id};")
+  end
+
 end
