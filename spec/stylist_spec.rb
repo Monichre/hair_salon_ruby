@@ -76,4 +76,26 @@ describe(Stylist) do
       expect(stylist.name()).to(eq("Maurice Turner"))
     end
   end
+
+  describe("#delete") do
+    it("lets you delete a stylist from the database") do
+      stylist = Stylist.new({:name => "Tony", :id => nil})
+      stylist.save()
+      stylist2 = Stylist.new({:name => "Jack", :id => nil})
+      stylist2.save()
+      stylist.delete()
+      expect(Stylist.all()).to(eq([stylist2]))
+    end
+    it("deletes a stylist's clients from the database") do
+      stylist = Stylist.new({:name => "Tony", :id => nil})
+      stylist.save()
+      client = Client.new({:name => "learn SQL", :stylist_id => stylist.id(), :id => nil})
+      client.save()
+      client2 = Client.new({:name => "Review Ruby", :stylist_id => stylist.id(), :id => nil})
+      client2.save()
+      stylist.delete()
+      expect(Client.all()).to(eq([]))
+    end
+  end
+
 end
