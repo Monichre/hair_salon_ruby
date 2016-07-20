@@ -7,7 +7,8 @@
 <% if @stylist.clients.any? %>
   <ul>
     <% @stylist.clients().each do |client| %>
-      <li><a href="/stylists/<%=@stylist.id %>/clients/<%=client.id %>"> <%=client.name() %>, <%=client.id %></a></li>
+      <li><a href="/stylists/<%=@stylist.id %>/clients/<%= client.id %>"> <%=client.name() %></a></li>
+
     <% end %>
   </ul>
 <% else %>

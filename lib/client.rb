@@ -4,10 +4,11 @@ class Client
   def initialize(attributes)
     @name = attributes.fetch(:name)
     @stylist_id = attributes.fetch(:stylist_id)
+    @id = attributes.fetch(:id)
   end
 
   define_method(:==) do |another_client|
-    self.name() == (another_client.name()) && self.stylist_id == another_client.stylist_id
+    self.name() == (another_client.name()) && self.stylist_id == another_client.stylist_id && self.id() == another_client.id()
   end
 
   define_singleton_method(:all) do
@@ -16,9 +17,20 @@ class Client
     returned_clients.each do |client|
       name = client.fetch('name')
       stylist_id = client.fetch('stylist_id').to_i
-      clients.push(Client.new({:name => name, :stylist_id => stylist_id}))
+      id = client.fetch('id').to_i
+      clients.push(Client.new({:name => name, :stylist_id => stylist_id, :id => id}))
     end
     clients
+  end
+
+  define_singleton_method(:find) do |id|
+    found_client = nil
+    Client.all().each() do |client|
+      if client.id() == id
+        found_client = client
+      end
+    end
+    found_client
   end
 
   def save

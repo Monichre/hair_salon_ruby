@@ -31,7 +31,7 @@ describe('stylists/:id', {:type => :feature}) do
   it('clicking a stylist and seeing their clients') do
     test_stylist = Stylist.new({:name => 'Veronica', :id => nil})
     test_stylist.save()
-    test_client = Client.new({:name => "Marve", :stylist_id => test_stylist.id()})
+    test_client = Client.new({:name => "Marve", :stylist_id => test_stylist.id(), :id => nil})
     test_client.save()
     visit('/stylists')
     click_link(test_stylist.name())
