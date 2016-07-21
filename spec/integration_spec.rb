@@ -39,3 +39,15 @@ describe('stylists/:id', {:type => :feature}) do
     expect(page).to have_content("Marve")
   end
 end
+
+describe('stylists/:id/edit', {:type => :feature}) do
+  it('clicking a stylist and seeing their clients') do
+    test_stylist = Stylist.new({:name => 'Veronica', :id => nil})
+    test_stylist.save()
+    visit('/stylists/' + test_stylist.id.to_s + '/edit')
+    expect(page).to have_content("Veronica")
+    fill_in('new_stylist_name', :with => 'Veronica Howard')
+    click_button('Edit')
+    expect(page).to have_content("Veronica Howard")
+  end
+end

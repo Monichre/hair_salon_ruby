@@ -42,7 +42,7 @@ patch('/stylists/:id/') do
   stylist = Stylist.find(params.fetch('id').to_i)
   new_name = params.fetch('new_stylist_name')
   stylist.update({:name => new_name})
-  erb(:stylist)
+  redirect('/stylists/' + stylist.id.to_s)
 end
 
 delete('/stylists/:id/delete') do
