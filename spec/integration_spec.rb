@@ -40,6 +40,45 @@ describe('stylists/:id', {:type => :feature}) do
   end
 end
 
+describe('stylists/:id/clients/:client_id', {:type => :feature}) do
+  it('client link takes you to client page') do
+    test_stylist = Stylist.new({:name => 'Veronica', :id => nil})
+    test_stylist.save()
+    test_client = Client.new({:name => "Marve", :stylist_id => test_stylist.id(), :id => nil})
+    test_client.save()
+    visit('/stylists/' + test_stylist.id.to_s)
+    click_link(test_client.name())
+    expect(page).to have_content("Marve")
+  end
+end
+
+describe('stylists/:id/clients/:client_id/update', {:type => :feature}) do
+  it('client link takes you to client page') do
+    test_stylist = Stylist.new({:name => 'Veronica', :id => nil})
+    test_stylist.save()
+    test_client = Client.new({:name => "Marve", :stylist_id => test_stylist.id(), :id => nil})
+    test_client.save()
+    visit('/stylists/' + test_stylist.id.to_s)
+    click_link(test_client.name())
+    expect(page).to have_content("Marve")
+    fill_in('update_client_name', :with => 'Marve Grossman')
+    click_button('Update this client')
+    expect(page).to have_content("Marve Grossman")
+  end
+end
+describe('stylists/:id/clients/:client_id/delete', {:type => :feature}) do
+  it('client link takes you to client page') do
+    test_stylist = Stylist.new({:name => 'Veronica', :id => nil})
+    test_stylist.save()
+    test_client = Client.new({:name => "Marve", :stylist_id => test_stylist.id(), :id => nil})
+    test_client.save()
+    visit('/stylists/' + test_stylist.id.to_s)
+    click_link(test_client.name())
+    click_button('Delete this client')
+    expect(page).to have_content("No new clients at this time. Book an appointment!")
+  end
+end
+
 describe('stylists/:id/delete', {:type => :feature}) do
   it('deleting a stylist') do
     test_stylist = Stylist.new({:name => 'Veronica', :id => nil})
