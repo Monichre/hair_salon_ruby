@@ -40,6 +40,18 @@ describe('stylists/:id', {:type => :feature}) do
   end
 end
 
+describe('stylists/:id/delete', {:type => :feature}) do
+  it('deleting a stylist') do
+    test_stylist = Stylist.new({:name => 'Veronica', :id => nil})
+    test_stylist.save()
+    visit('/stylists')
+    expect(page).to have_content("Veronica")
+    click_button('Delete this stylist')
+    expect(page).to have_content('There are no stylists at this time. Please contact our receptionist, thank you
+    555-555-5555')
+  end
+end
+
 describe('stylists/:id/edit', {:type => :feature}) do
   it('clicking a stylist and seeing their clients') do
     test_stylist = Stylist.new({:name => 'Veronica', :id => nil})
@@ -49,5 +61,17 @@ describe('stylists/:id/edit', {:type => :feature}) do
     fill_in('new_stylist_name', :with => 'Veronica Howard')
     click_button('Edit')
     expect(page).to have_content("Veronica Howard")
+  end
+end
+
+describe('stylists/:id/clients/new_client', {:type => :feature}) do
+  it('adds a new client to stylist') do
+    test_stylist = Stylist.new({:name => 'Veronica', :id => nil})
+    test_stylist.save()
+    visit('/stylists/' + test_stylist.id.to_s)
+    expect(page).to have_content("Veronica")
+    fill_in('new_client_name', :with => 'Barry Zuckercorn')
+    click_button('Book this client')
+    expect(page).to have_content("Barry Zuckercorn")
   end
 end
